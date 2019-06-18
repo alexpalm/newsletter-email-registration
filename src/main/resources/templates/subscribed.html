@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Subscribed :: Newsletter Email Registration</title>
+    </head>
+    <body>
+        <h2>New Subscriber:</h2>
+
+        <table th:if="${newSubscriber != null}" cellspacing="0" cellpadding="3" border="1">
+            <tr>
+                <td>Full Name</td>
+                <td>E-mail</td>
+            </tr>
+            <tr>
+                <td th:text="${newSubscriber.getFullName()}"></td>
+                <td th:text="${newSubscriber.getEmail()}"></td>
+            </tr>
+        </table>
+
+        <hr />
+
+        <h2>Subscribers List:</h2>
+        <a th:href="@{/subscribe}">Add Subscriber</a>
+
+        <br />
+
+        <table th:if="${ not #lists.isEmpty(subscribersList)}" cellspacing="0" cellpadding="3" border="1">
+            <tr>
+                <td>Full Name</td>
+                <td>E-mail</td>
+            </tr>
+            <tr th:each=" subscriber : ${subscribersList}">
+                <td th:text="${subscriber.getFullName()}"></td>
+                <td th:text="${subscriber.getEmail()}"></td>
+            </tr>
+        </table>
+    </body>
+</html>
